@@ -13,7 +13,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   */
 object ReceiveKafkaStream {
 
-  val kafkaTopic = "test-js-collection"
+  val kafkaTopic = "stg-js-collection"
 
   def main(args: Array[String]): Unit = {
 
@@ -24,7 +24,6 @@ object ReceiveKafkaStream {
       .setMaster("spark://192.168.40.21:7077")
       .setAppName("KafkaReciver")
     val ssc = new StreamingContext(sparkConf, Seconds(2))
-
     // Create direct kafka stream with brokers and topics
     val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers)
     val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
